@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎪 Tambola (Indian Housie) Game 🎪</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎪 TAMBOLA (INDIAN HOUSIE) 🎪</h1>
+            <p class="subtitle">The Classic Indian Bingo Game</p>
+        </header>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <button id="newGameBtn" class="btn btn-success">🎮 New Game</button>
+            <button id="callNumberBtn" class="btn btn-primary" disabled>🎯 Call Number</button>
+            <button id="autoPlayBtn" class="btn btn-warning" disabled>⏯️ Auto Play</button>
+            <button id="rulesBtn" class="btn btn-info">📋 Rules</button>
+            <button id="resetBtn" class="btn btn-danger">🔄 Reset</button>
+        </div>
+
+        <!-- Game Status -->
+        <div class="game-status">
+            <div class="current-number">
+                <h2>Current Number</h2>
+                <div id="currentNumber" class="number-display">Ready!</div>
+            </div>
+            <div class="game-info">
+                <div id="numbersCalledInfo">Numbers Called: 0/90</div>
+                <div id="gameStatusInfo">Welcome to Tambola!</div>
+                <div id="autoPlayStatus" class="auto-play-status hidden">Auto-play: OFF</div>
+            </div>
+        </div>
+
+        <!-- Main Game Area -->
+        <div class="game-area">
+            <!-- Left Panel - Called Numbers -->
+            <div class="left-panel">
+                <h3>📋 Called Numbers</h3>
+                <div id="calledNumbersGrid" class="called-numbers-grid">
+                    <!-- Called numbers will be populated here -->
+                </div>
+                <div class="recent-numbers">
+                    <h4>Recent Numbers:</h4>
+                    <div id="recentNumbers">None</div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Player Tickets -->
+            <div class="right-panel">
+                <h3>🎫 Player Tickets</h3>
+                <div id="playersContainer" class="players-container">
+                    <div class="no-game-message">
+                        <p>🎮 Click "New Game" to start playing!</p>
+                        <p>📋 Click "Rules" to learn how to play</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Winner Announcements -->
+        <div id="winnerModal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>🏆 WINNER! 🏆</h2>
+                <div id="winnerInfo"></div>
+                <button class="btn btn-success" onclick="closeWinnerModal()">Continue Game</button>
+            </div>
+        </div>
+
+        <!-- Rules Modal -->
+        <div id="rulesModal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>📋 Game Rules</h2>
+                <div class="rules-content">
+                    <h3>🎫 Ticket Structure</h3>
+                    <ul>
+                        <li>Each ticket is a 3×9 grid with 15 numbers</li>
+                        <li>Numbers range from 1-90</li>
+                        <li>Column distribution: 1-9, 10-19, 20-29, etc.</li>
+                        <li>Each row has exactly 5 numbers</li>
+                    </ul>
+                    
+                    <h3>🏆 Winning Patterns</h3>
+                    <ul>
+                        <li><strong>First Line:</strong> Complete the top row</li>
+                        <li><strong>Second Line:</strong> Complete the middle row</li>
+                        <li><strong>Third Line:</strong> Complete the bottom row</li>
+                        <li><strong>Four Corners:</strong> Mark all four corner numbers</li>
+                        <li><strong>Full House:</strong> Mark all 15 numbers (JACKPOT!)</li>
+                    </ul>
+                    
+                    <h3>🎮 How to Play</h3>
+                    <ul>
+                        <li>Numbers are called out randomly</li>
+                        <li>Numbers are automatically marked on your ticket</li>
+                        <li>Winners are announced immediately</li>
+                        <li>Game continues until Full House is achieved</li>
+                    </ul>
+                </div>
+                <button class="btn btn-primary" onclick="closeRulesModal()">Got It!</button>
+            </div>
+        </div>
+
+        <!-- Game Setup Modal -->
+        <div id="setupModal" class="modal hidden">
+            <div class="modal-content">
+                <h2>🎮 New Game Setup</h2>
+                <div class="setup-form">
+                    <label for="numPlayers">Number of Players (1-6):</label>
+                    <input type="number" id="numPlayers" min="1" max="6" value="2">
+                    
+                    <div id="playerNamesContainer">
+                        <!-- Player name inputs will be added here -->
+                    </div>
+                    
+                    <div class="setup-buttons">
+                        <button class="btn btn-success" onclick="startGame()">Start Game</button>
+                        <button class="btn btn-secondary" onclick="closeSetupModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Results Modal -->
+        <div id="resultsModal" class="modal hidden">
+            <div class="modal-content">
+                <h2>🎊 Final Results 🎊</h2>
+                <div id="finalResults"></div>
+                <button class="btn btn-success" onclick="closeResultsModal()">New Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
